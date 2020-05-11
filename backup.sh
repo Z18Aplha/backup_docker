@@ -4,12 +4,10 @@ set -e
 
 echo "INFO: Starting backup.sh pid $$ $(date)"
 
-# Delete logs by user request
-if [ ! -z "${ROTATE_LOG##*[!0-9]*}" ]
-then
-  echo "INFO: Removing logs older than $ROTATE_LOG day(s)..."
-  touch /logs/tmp.txt && find /logs/*.txt -mtime +$ROTATE_LOG -type f -delete && rm -f /logs/tmp.txt
-fi
+# cd to the destination folder
+# tar creates archive right 'here'
+# list of files to delete are without absolute path --> rm would fail
+cd $DEST
 
 if [ `lsof | grep $0 | wc -l | tr -d ' '` -gt 1 ]
 then
@@ -22,19 +20,17 @@ else
   f="backup_$d.tar.gz"
   tar -cvzf $f -C $SRC/ .
   echo "$f created"
+  # change owner to 1000 (pi in most cases) to grant access to other containers not root
   chown -R 1000 $f
-  mv $f $DEST
 
   del=`ls -t $DEST | grep backup_ | awk "NR>$BACKUP_ROTATION"`
   echo "$del"
-  #if ["$del" != ""]
   if [-z $del]
   then
     echo "no old files to delete"
   else
     echo "delet old backups: $del"
-    rm $DEST/$del
-
+    rm $del
   fi
 
   echo "backup done"
