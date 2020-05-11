@@ -17,6 +17,7 @@ then
 else
   echo $$ > /tmp/backup.pid
   # create archive
+  echo "PWD: $PWD"
   d=$(date +%Y_%m_%d-%H_%M_%S)
   f="backup_$d.tar.gz"
   tar -cvzf $f -C $SRC/ .
