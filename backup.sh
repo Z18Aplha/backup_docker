@@ -25,7 +25,7 @@ else
 
   del=`ls -t $DEST | grep backup_ | awk "NR>$BACKUP_ROTATION"`
   echo "$del"
-  if ["$del" == ""]
+  if [["$del" == ""]]
   #if [-z $del]
   then
     echo "no old files to delete"
