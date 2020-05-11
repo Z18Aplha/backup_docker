@@ -20,9 +20,11 @@ else
   d=$(date +%Y_%m_%d-%H_%M_%S)
   f="backup_$d.tar.gz"
   tar -cfvz $DEST/$f $SRC/
+  tar -cvzf $f -C $DEST/ $SRC/
   echo "$f created"
 
   del=`ls -t $DEST | grep backup_ | awk "NR>$BACKUP_ROTATION"`
+  echo $del
   if [$del != ""]
   then
     echo "delet old backups: $del"
