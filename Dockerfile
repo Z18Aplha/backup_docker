@@ -1,8 +1,8 @@
 FROM alpine:latest
 
 ENV CRON="0 5 * * *" \
-    SRC="source" \
-    DEST="backup" \
+    SRC="/source" \
+    DEST="/backup" \
     BACKUP_ROTATION=5 \
     TZ="Europe/Berlin" 
 
