@@ -19,7 +19,6 @@ else
   # create archive
   d=$(date +%Y_%m_%d-%H_%M_%S)
   f="backup_$d.tar.gz"
-  tar -cfvz $DEST/$f $SRC/
   tar -cvzf $f -C $DEST/ $SRC/
   echo "$f created"
 
