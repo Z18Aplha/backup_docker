@@ -22,16 +22,11 @@ There are several environment variables to take more control.
 key | default | description
 --- | --- | ---
 CRON | "0 5 * * *" | time of backup (cron format)
-SRC | "0 5 * * *" | time of backup (cron format)
-DEST | "0 5 * * *" | time of backup (cron format)
-BACKUP_ROTATIONS | "0 5 * * *" | time of backup (cron format)
-TZ | "0 5 * * *" | time of backup (cron format)
+SRC | "/src" | source location with files to backup
+DEST | "/backups" | destination location for backup files
+BACKUP_ROTATIONS | 5 | number of backup files to keep
+TZ | "Europe/Berlin" | [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) to use for the cron
 
-
-SRC="/src" \
-    DEST="/backups" \
-    BACKUP_ROTATION=5 \
-    TZ="Europe/Berlin" 
 
 **Example** for usage with grafana:
 ```
