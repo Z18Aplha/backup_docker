@@ -26,14 +26,15 @@ else
   mv $f $DEST
 
   del=`ls -t $DEST | grep backup_ | awk "NR>$BACKUP_ROTATION"`
-  echo $del
+  echo "$del"
   #if ["$del" != ""]
   if [-z $del]
   then
-    echo "delet old backups: $del"
-    rm $del
-  else
     echo "no old files to delete"
+  else
+    echo "delet old backups: $del"
+    rm $DEST/$del
+
   fi
 
   echo "backup done"
