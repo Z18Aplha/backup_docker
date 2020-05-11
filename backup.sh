@@ -22,6 +22,8 @@ else
   f="backup_$d.tar.gz"
   tar -cvzf $f -C $SRC/ .
   echo "$f created"
+  chown -R 1000 $f
+  mv $f $DEST
 
   del=`ls -t $DEST | grep backup_ | awk "NR>$BACKUP_ROTATION"`
   echo $del
