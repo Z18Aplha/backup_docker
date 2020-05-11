@@ -23,9 +23,13 @@ else
   echo "$f created"
 
   del=`ls -t $DEST | grep backup_ | awk "NR>$BACKUP_ROTATION"`
-  echo "delet old backups: $del"
-  rm $del
-
+  if [$del != ""]
+    echo "delet old backups: $del"
+    rm $del
+  else
+    echo "no old files to delete"
+  fi
+  
   echo "backup done"
   rm -f /tmp/sync.pid
 
