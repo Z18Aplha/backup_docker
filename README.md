@@ -32,3 +32,8 @@ TZ | "Europe/Berlin" | [timezone](https://en.wikipedia.org/wiki/List_of_tz_datab
 ```
 docker run --name backup_grafana -v /home/pi/docker/grafana:/src -v /home/pi/docker/backup_grafana:/backups -e CRON="30 4 * * *" backup:latest
 ```
+
+## Backup container
+Grafana has no integrated backup solution. But it is possible to just copy the mount and use it as a backup. To automate this process there is an other [repository](https://github.com/Z18Aplha/backup_docker) which is made therefor.
+
+Combine it with the [rclone](https://rclone.org/) to get the ultimate backup solution. This [repository](https://github.com/Z18Aplha/rclone_docker) is made for an rclone container on arm machines (i.e. RaspberryPi).
