@@ -27,7 +27,8 @@ else
 
   del=`ls -t $DEST | grep backup_ | awk "NR>$BACKUP_ROTATION"`
   echo $del
-  if ["$del" != ""]
+  #if ["$del" != ""]
+  if [-z $del]
   then
     echo "delet old backups: $del"
     rm $del
