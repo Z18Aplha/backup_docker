@@ -16,7 +16,7 @@ The user inside the container is _root_ so it will work with containers using th
 ## Run container
 Run the container with
 ```
-docker run --name backup_<instance> -v <source>:/src -v <destination>:/backups [-e <key>=<value>] backup:latest
+docker run --name <instance>_backup -v <source>:/src -v <destination>:/backups [-e <key>=<value>] backup:latest
 ```
 There are several environment variables to take more control.
 key | default | description
@@ -30,5 +30,5 @@ TZ | "Europe/Berlin" | [timezone](https://en.wikipedia.org/wiki/List_of_tz_datab
 
 **Example** for usage with grafana:
 ```
-docker run --name backup_grafana -v /home/pi/docker/grafana:/src -v /home/pi/docker/backup_grafana:/backups -e CRON="30 4 * * *" backup:latest
+docker run --name grafana_backup -v /home/pi/docker/grafana:/src -v /home/pi/docker/backup_grafana:/backups -e CRON="30 4 * * *" backup:latest
 ```
