@@ -18,8 +18,8 @@ else
   echo $$ > /tmp/backup.pid
   # create archive
   d=$(date +%Y_%m_%d-%H_%M_%S)
-  f="backup_$d.tar"
-  tar -cvf $DEST/$f $SRC/
+  f="backup_$d.tar.gz"
+  tar -cfvz $DEST/$f $SRC/
   echo "$f created"
 
   del=`ls -t $DEST | grep backup_ | awk "NR>$BACKUP_ROTATION"`
