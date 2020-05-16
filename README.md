@@ -30,5 +30,5 @@ TZ | "Europe/Berlin" | [timezone](https://en.wikipedia.org/wiki/List_of_tz_datab
 
 **Example** for usage with grafana:
 ```
-docker run --name grafana_backup -v /home/pi/docker/grafana:/src -v /home/pi/docker/backup_grafana:/backups -e CRON="30 4 * * *" backup:latest
+docker run --name grafana_backup --restart always -v /home/pi/docker/grafana:/src -v /home/pi/docker/grafana_backup:/backups -e CRON="30 4 * * *" backup:latest
 ```
